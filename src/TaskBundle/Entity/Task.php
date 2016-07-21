@@ -3,6 +3,7 @@
 namespace TaskBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Task
@@ -47,20 +48,6 @@ class Task
     }
 
     /**
-     * Set tags
-     *
-     * @param string $tags
-     *
-     * @return Task
-     */
-    public function setTags($tags)
-    {
-        $this->tags = $tags;
-
-        return $this;
-    }
-
-    /**
      * Get tags
      *
      * @return string
@@ -92,6 +79,16 @@ class Task
     public function getDescription()
     {
         return $this->description;
+    }
+
+    public function __construct()
+    {
+        $this->tags = new ArrayCollection();
+    }
+
+    public function setTags(ArrayCollection $tags)
+    {
+        $this->tags = $tags;
     }
 }
 
